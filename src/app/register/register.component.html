@@ -1,0 +1,41 @@
+<div class="col-md-8 order-md-1">
+  <h4 class="mb-3">Register Form</h4>
+  <form class="needs-validation" (ngSubmit)="onFormSubmit(regForm)" #regForm="ngForm">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="firstName">Full name</label>
+        <input type="text" class="form-control" name="fullName" id="fullName" #fullname ngModel placeholder="" value="" required="">
+        <div class="invalid-feedback">
+          Valid first name is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email">Email <span class="text-muted">(Optional)</span></label>
+      <input type="email" class="form-control" name="email" id="email"  #email ngModel placeholder="you@example.com">
+      <div class="invalid-feedback">
+        Please enter a valid email address for shipping updates.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" id="password" #password ngModel autocomplete="false">
+      <div class="invalid-feedback">
+        Please enter a valid email address for shipping updates.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password_confirmation">Password Confirmation</label>
+      <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" #password_confirmation ngModel>
+      <div class="invalid-feedback">
+        Please enter a valid email address for shipping updates.
+      </div>
+    </div>
+
+    <hr class="mb-4">
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+  </form>
+</div>
