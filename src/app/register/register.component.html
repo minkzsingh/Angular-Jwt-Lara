@@ -1,10 +1,11 @@
 <div class="col-md-8 order-md-1">
   <h4 class="mb-3">Register Form</h4>
   <form class="needs-validation" (ngSubmit)="onFormSubmit(regForm)" #regForm="ngForm">
+    <div class="alert alert-success" *ngIf="registered"> User Registered Successfully {{ regForm.reset() }}</div>
     <div class="row">
       <div class="col-md-12">
         <label for="firstName">Full name</label>
-        <input type="text" class="form-control" name="fullName" id="fullName" #fullname ngModel placeholder="" value="" required="">
+        <input type="text" class="form-control" name="fullname"  #fullname ngModel placeholder="" value="" required="">
         <div class="invalid-feedback">
           Valid first name is required.
         </div>
