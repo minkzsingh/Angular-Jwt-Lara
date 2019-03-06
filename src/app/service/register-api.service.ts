@@ -12,18 +12,16 @@ export class RegisterApiService {
   checkStatus = new BehaviorSubject<boolean>(false);
   isUserLoggedIn = this.checkStatus.asObservable();
 
-
-
   constructor(private http: HttpClient) { 
 
   }
 
   registerUser(user){
-    return this.http.post(this.config.apiUrl+"/register", user).subscribe(data => console.log(data));
+    return this.http.post(this.config.apiUrl + "/register", user).subscribe(data => console.log(data));
   }
 
   checkLogin(){
-    const token = localStorage.getItem('access_tokens');
+    const token = localStorage.getItem('access_token');
     if(token){
       this.checkStatus.next(true);
     }else{
@@ -32,12 +30,12 @@ export class RegisterApiService {
   }
 
   loginUser(user){
-    this.http.post(this.config.apiUrl+"/login", user).subscribe((data: any) => {
-                    if(data.access_tokens){
-                      localStorage.setItem('token' , data.access_tokens);
+    return this.http.post(this.config.apiUrl+"/login", user).subscribe((data: any) => {
+                  if(data.access_token){
+                      localStorage.setItem('token' , data.access_token);
                       localStorage.setItem('user' , JSON.stringify(data.user));
-                      return data;
-                    }
-                   });
+                      return true;
+                  }
+            });
   }
 }

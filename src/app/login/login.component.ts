@@ -7,7 +7,7 @@ import { RegisterApiService } from '../service/register-api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  userLogIn = false;
   constructor(private apiService: RegisterApiService) { }
 
   ngOnInit() {
@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
     }
 
     this.apiService.loginUser(user);
+    this.apiService.isUserLoggedIn.subscribe(val => (this.userLogIn = val));
+    console.log(this.userLogIn)
   }
 
 }
