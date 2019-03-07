@@ -21,7 +21,7 @@ export class RegisterApiService {
   }
 
   checkLogin(){
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('token');
     if(token){
       this.checkStatus.next(true);
     }else{
@@ -31,10 +31,10 @@ export class RegisterApiService {
 
   loginUser(user){
     return this.http.post(this.config.apiUrl+"/login", user).subscribe((data: any) => {
-                  if(data.access_token){
-                      localStorage.setItem('token' , data.access_token);
+                  if(data){
+                      localStorage.setItem('token' , data.token);
                       localStorage.setItem('user' , JSON.stringify(data.user));
-                      return true;
+                      return this.checkLogin();
                   }
             });
   }

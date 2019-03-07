@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterApiService } from '../service/register-api.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  isUserLogIn = true;
+  username = "";
+  constructor(private apiService:RegisterApiService) { }
 
   ngOnInit() {
-  }
+    this.apiService.isUserLoggedIn.subscribe(val => {
+          if(val){
+            this.isUserLogIn = val;
+            const user = JSON.parse(localStorage.getItem('user'));
+            this.username = user.name;
+          }
+        });
 
+  }
 }

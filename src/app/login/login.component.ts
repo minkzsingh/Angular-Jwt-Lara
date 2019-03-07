@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterApiService } from '../service/register-api.service';
+import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
 
     this.apiService.loginUser(user);
     this.apiService.isUserLoggedIn.subscribe(val => (this.userLogIn = val));
-    console.log(this.userLogIn)
+    //this.route.navigate(['/dashboard']);
   }
 
 }
