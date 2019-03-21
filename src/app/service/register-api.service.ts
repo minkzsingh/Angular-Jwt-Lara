@@ -38,4 +38,16 @@ export class RegisterApiService {
                   }
             });
   }
+
+  logoutUser(){
+  return  this.http.post(this.config.apiUrl + "/logout" ,
+                 { token: localStorage.getItem('token')}).subscribe( message => {
+                   if(message){
+                     localStorage.removeItem('token');
+                     localStorage.removeItem('user');
+                     this.checkLogin();
+                   }
+                 } 
+    );
+  }
 }

@@ -7,11 +7,12 @@ import { RegisterApiService } from '../service/register-api.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isUserLogIn = true;
-  username = "";
+  isUserLogIn = false;
+  username = "Guest";
   constructor(private apiService:RegisterApiService) { }
 
   ngOnInit() {
+    this.apiService.checkLogin();
     this.apiService.isUserLoggedIn.subscribe(val => {
           if(val){
             this.isUserLogIn = val;
@@ -20,5 +21,11 @@ export class NavbarComponent implements OnInit {
           }
         });
 
+  }
+
+  logoutUser(){
+    this.apiService.logoutUser();
+    this.isUserLogIn = false;
+    this.username = "guest";
   }
 }
